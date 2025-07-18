@@ -146,7 +146,7 @@ const Hero = () => {
         </h1>
 
         {/* Product image */}
-        <div className="product-image md:h-[90%] lg:h-[90%] z-[1]">
+        <div key={products[index].name} className="product-image md:h-[90%] lg:h-[90%] z-[1]">
         <img
           src={products[index].image}
           alt={products[index].name}
