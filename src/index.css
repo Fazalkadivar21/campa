@@ -1,1 +1,19 @@
-@import "tailwindcss"
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'kugile';
+  src: url('/fonts/kugile/Kugile.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+    background-color: #000;
+    color : gold;
+    font-family : "kugile";
+    font-size: 40px;
+}
+
+#hero,.cursor{
+  cursor: none;
+}

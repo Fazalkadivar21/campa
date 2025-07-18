@@ -1,12 +1,10 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import Home from "./pages/Home"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1 className='text-[29vw]'>CAMPA</h1>
+      <Home/>
     </>
   )
 }
