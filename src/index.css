@@ -12,6 +12,7 @@ body{
     color : gold;
     font-family : "kugile";
     font-size: 40px;
+    box-sizing: border-box;
 }
 
 #hero,.cursor{

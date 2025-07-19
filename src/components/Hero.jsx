@@ -1,14 +1,9 @@
 import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
-
-  const changeProduct = () => {
-    setIndex((prev) => (prev === products.length - 1 ? 0 : prev + 1));
-  };
-
+  const [cursorScaledDown, setCursorScaledDown] = useState(false); // local state
   const cursorRef = useRef();
 
   const products = [
@@ -16,80 +11,68 @@ const Hero = () => {
       image: "/images/cola.png",
       name: "cola",
       taste: "Cola",
-      color: "bg-[#4B2C5E]",
+      color: "#4B2C5E",
     },
     {
       image: "/images/jeera.png",
       name: "jeera",
       taste: "Jeera",
-      color: "bg-[#7BAE7F]",
+      color: "#7BAE7F",
     },
     {
       image: "/images/orange.png",
       name: "orange",
       taste: "Orange",
-      color: "bg-[#C75B12]",
+      color: "#C75B12",
     },
     {
       image: "/images/cricket.png",
       name: "cricket",
       taste: "Lemony",
-      color: "bg-[#66A85E]",
+      color: "#66A85E",
     },
     {
       image: "/images/lemon.png",
       name: "lemon",
       taste: "Lemon",
-      color: "bg-[#D6B647]",
+      color: "#D6B647",
     },
     {
       image: "/images/powerup.png",
       name: "powerup",
       taste: "Strong Cola",
-      color: "bg-[#2E4A7D]",
+      color: "#2E4A7D",
     },
   ];
+
+  const changeProduct = () => {
+    setCursorScaledDown(true);
+    setTimeout(() => setCursorScaledDown(false), 200); // quick scale down on click
+    setIndex((prev) => (prev === products.length - 1 ? 0 : prev + 1));
+  };
 
   const followMouse = ({ clientX: x, clientY: y }) => {
     gsap.to(cursorRef.current, {
       x: x - 55,
       y: y - 55,
-      stagger: 2,
       ease: "power2.out",
     });
   };
-  
+
   useEffect(() => {
     gsap.fromTo(
       ".product-image",
       { y: -550, rotate: 12, opacity: 0.8, scale: 0.8 },
-      {
-        y: 0,
-        rotate: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.5,
-        ease: "power2.out",
-      }
+      { y: 0, rotate: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }
     );
 
     gsap.fromTo(
       ".taste-text",
       { opacity: 0, y: 20, rotate: 12 },
-      {
-        opacity: 1,
-        y: 0,
-        rotate: 0,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: 0.1,
-      }
+      { opacity: 1, y: 0, rotate: 0, duration: 0.5, ease: "power2.out", delay: 0.1 }
     );
 
     const newColor = products[index].color
-      .replace("bg-", "")
-      .replace("[", "")
-      .replace("]", "");
 
     gsap.set("#color-overlay", { backgroundColor: newColor });
 
@@ -109,13 +92,10 @@ const Hero = () => {
   }, [index]);
 
   useEffect(() => {
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 1024) {
       const handleFirstMove = (e) => {
-        gsap.set(cursorRef.current, {
-          x: e.clientX - 55,
-          y: e.clientY - 55,
-        });
-        window.removeEventListener("mousemove", handleFirstMove); // remove after first move
+        gsap.set(cursorRef.current, { x: e.clientX - 55, y: e.clientY - 55 });
+        window.removeEventListener("mousemove", handleFirstMove);
         window.addEventListener("mousemove", followMouse);
       };
 
@@ -156,15 +136,15 @@ const Hero = () => {
           </div>
 
         {/* Taste info */}
-        <div className="taste-text text-xl md:text-2xl text-white">
-          <span className="mr-2">TASTE:</span>
+        <div className="taste-text text-xl md:text-2xl text-black">
+          <span className="mr-2">Flavour:</span>
           <span>{products[index].taste}</span>
         </div>
       </div>
 
       <div
         ref={cursorRef}
-        className="cursor fixed top-2/3 left-2/3 lg:top-2.5 lg:left-2.5 z-50 h-32 w-32 rounded-full bg-[#F7E676] text-emerald-600 text-3xl flex items-center justify-center"
+        className={`cursor fixed top-2/3 left-2/3 lg:top-2.5 lg:left-2.5 z-50 ${cursorScaledDown ? "h-0 w-0 text-[0px]" : "h-32 w-32 text-3xl"}  rounded-full bg-[#F7E676] text-emerald-600 flex items-center justify-center`}
         onClick={changeProduct}
       >
         <p className="m-0 leading-none">TAP</p>
