@@ -8,13 +8,16 @@
 }
 
 body{
-    background-color: #000;
-    color : gold;
+    background-color: #0f0f0f;
+    color : #ffd700;
     font-family : "kugile";
-    font-size: 40px;
     box-sizing: border-box;
 }
 
 #hero,.cursor{
   cursor: none;
+}
+
+div.Renewal{
+  font-size: 21vw;
 }
