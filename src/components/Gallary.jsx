@@ -76,7 +76,7 @@ const Gallery = () => {
       >
         {!isDesktop&&<div
           className="absolute left-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
-          onClick={() => setRotationY((prev) => prev + step)}
+          onClick={() => setRotationY((prev) => prev - step)}
         >
           &#10094;
         </div>}
@@ -117,7 +117,7 @@ const Gallery = () => {
               <img
                 src={src}
                 alt={`${i}`}
-                className="object-cover h-[80vh] md:h-[80vh] lg:h-[70vh]"
+                className="object-cover h-[80vh] md:h-[80vh] lg:h-[70vh] lg:w-[20vw] rounded-xl border-2 border-amber-300"
               />
             </div>
           ))}
@@ -125,7 +125,7 @@ const Gallery = () => {
 
         {!isDesktop && <div
           className="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
-          onClick={() => setRotationY((prev) => prev - step)}
+          onClick={() => setRotationY((prev) => prev + step)}
         >
           &#10095;
         </div>}
