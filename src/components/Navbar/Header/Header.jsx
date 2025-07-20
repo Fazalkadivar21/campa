@@ -2,10 +2,20 @@ import styles from "./style.module.scss";
 import { useContext } from "react";
 import { CursorContext } from "../../../context/CursorContext";
 import useMagnetic from "../../hooks/useMagnetic";
+import { useCursor } from "../../../context/CursorContext";
 
 export default function Index({ isOpen, setOpen }) {
   const { scaleDownCursor, scaleUpCursor } = useContext(CursorContext);
   const magneticRef = useMagnetic(1.5);
+  const { setCursorProps, isDesktop } = useCursor();
+
+  const handleMouseEnter = () => {
+    setCursorProps({ text: "", scale: 38, color : "black" });
+  };
+
+  const handleMouseLeave = () => {
+    setCursorProps({ text: "", scale: 20 });
+  };
 
   return (
     <div
@@ -15,6 +25,8 @@ export default function Index({ isOpen, setOpen }) {
     >
       <div
         ref={magneticRef}
+        onMouseOver={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         onClick={() => setOpen(!isOpen)}
         className={`${styles.burger} ${isOpen ? styles.burgerActive : ""}`}
       >
