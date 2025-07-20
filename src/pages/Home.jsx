@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
-import NowServing from "../components/NowServing";
 import StoryPara from "../components/StoryPara";
 import StoryText from "../components/StoryText";
+import Gallary from "../components/Gallary"
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <Hero />
       <StoryText />
       <StoryPara />
-      <NowServing />
+      <Gallary />
     </div>
   );
 };
