@@ -11,7 +11,7 @@ const StoryText = () => {
   const { setCursorProps } = useCursor();
 
   const handleMouseEnter = () => {
-    setCursorProps({ text: "", scale: 512 , color : "transparent" });
+    setCursorProps({ text: "", scale: 512 , color : "bg-transparent" });
   };
 
   const handleMouseLeave = () => {

@@ -74,8 +74,7 @@ const Hero = () => {
         onClick={changeProduct}
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseLeave}
-        className={`relative overflow-hidden h-[95vh] w-[96vw] flex flex-col items-center justify-center text-center m-4 rounded-2xl ${drinks[index].color}`}
-      >
+        className={`relative overflow-hidden h-[95vh] w-[96vw] flex flex-col items-center justify-center text-center m-4 rounded-2xl ${drinks[index].color}`}>
         <div
           id="color-overlay"
           className="absolute top-1/2 left-1/2 w-[200%] h-[200%] rounded-full transform -translate-x-1/2 -translate-y-1/2 scale-0"

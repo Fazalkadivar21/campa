@@ -14,18 +14,26 @@ const anim = {
 
 const itemAnim = {
   initial: { opacity: 0, y: -50 },
-  open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 500, damping: 30 } },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 500, damping: 30 },
+  },
   exit: { opacity: 0, y: -50 },
 };
 
 const letterAnim = {
   initial: { opacity: 0, y: 20 },
-  open: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 500, damping: 30 } },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 500, damping: 30 },
+  },
   exit: { opacity: 0, y: 20 },
 };
 
 const Navbar = ({ open }) => {
-  const navList = ["PRODUCTS", "OUR STORY", "NEWS", "LINKS"];
+  const navList = ["HOME","LOGIN", "ABOUT US", "PRODUCTS", "TRUSTED BY"];
   const refs = useRef([]);
   const [hoveringIndex, setHoveringIndex] = useState(null);
 
@@ -47,7 +55,9 @@ const Navbar = ({ open }) => {
         repeatType: "mirror",
         ease: "easeInOut",
         duration: 0.6,
-        delay: stagger(staggerDelay, { startDelay: -staggerDelay * chars.length }),
+        delay: stagger(staggerDelay, {
+          startDelay: -staggerDelay * chars.length,
+        }),
       }
     );
 
@@ -76,22 +86,21 @@ const Navbar = ({ open }) => {
               variants={itemAnim}
               onHoverStart={() => setHoveringIndex(index)}
               onHoverEnd={() => setHoveringIndex(null)}
-              className="litext text-5xl cursor-pointer"
-              ref={el => refs.current[index] = el}
+              className="litext text-4xl cursor-pointer"
+              ref={(el) => (refs.current[index] = el)}
             >
               <motion.span
                 variants={anim}
                 initial="initial"
                 animate="open"
                 exit="exit"
-                style={{ display: "inline-flex" }}
+                className="inline-flex"
               >
                 {item.split("").map((char, idx) => (
                   <motion.span
                     key={idx}
                     variants={letterAnim}
-                    className="split-char"
-                    style={{ display: "inline-block" }}
+                    className="split-char inline-block"
                   >
                     {char === " " ? "\u00A0" : char}
                   </motion.span>

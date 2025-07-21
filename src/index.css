@@ -21,3 +21,27 @@ body{
 div.Renewal{
   font-size: 21vw;
 }
+
+.bg-gold {
+  background-color: #ffd700;
+}
+
+.text-black {
+  color: black;
+}
+
+.bg-black-alpha {
+  background-color: #0006;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
