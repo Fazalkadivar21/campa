@@ -1,7 +1,7 @@
-import Hero from "../components/Hero";
-import StoryPara from "../components/StoryPara";
-import StoryText from "../components/StoryText";
-import Gallary from "../components/Gallary"
+import Hero from "../components/Home/Hero";
+import StoryPara from "../components/Home/StoryPara";
+import StoryText from "../components/Home/StoryText";
+import Gallary from "../components/Home/Gallary"
 
 const Home = () => {
   return (
