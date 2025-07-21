@@ -32,11 +32,10 @@ export default function GlobalCursor() {
       className="fixed top-0 left-0 z-50 pointer-events-none"
     >
       <div
-        className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-emerald-600 flex items-center justify-center"
+        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-emerald-600 flex items-center justify-center ${color ? color : 'bg-white'}`}
         style={{
           width: `${scale}px`,
           height: `${scale}px`,
-          backgroundColor: color || "white",
           transition: "width 0.3s, height 0.3s, background-color 0.3s",
         }}
       >
