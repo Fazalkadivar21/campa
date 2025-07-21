@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CursorContext } from "../../../context/CursorContext";
 import useMagnetic from "../../hooks/useMagnetic";
 import { useCursor } from "../../../context/CursorContext";
+import GlassSurface from "../../ReactBits/GlassSurface";
 
 export default function Index({ isOpen, setOpen }) {
   const { scaleDownCursor, scaleUpCursor } = useContext(CursorContext);
@@ -10,7 +11,7 @@ export default function Index({ isOpen, setOpen }) {
   const { setCursorProps, isDesktop } = useCursor();
 
   const handleMouseEnter = () => {
-    setCursorProps({ text: "", scale: 38, color : "black" });
+    setCursorProps({ text: "", scale: 38, color: "black" });
   };
 
   const handleMouseLeave = () => {
@@ -23,14 +24,20 @@ export default function Index({ isOpen, setOpen }) {
       onMouseEnter={scaleDownCursor}
       onMouseLeave={scaleUpCursor}
     >
-      <div
-        ref={magneticRef}
-        onMouseOver={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={() => setOpen(!isOpen)}
-        className={`${styles.burger} ${isOpen ? styles.burgerActive : ""}`}
+      <GlassSurface
+        width={50}
+        height={50}
+        borderRadius={100}
+        className="cursor-pointer" // optional, add your own classes
       >
-      </div>
+        <div
+          ref={magneticRef}
+          onMouseOver={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={() => setOpen(!isOpen)}
+          className={`${styles.burger} ${isOpen ? styles.burgerActive : ""}`}
+        ></div>
+      </GlassSurface>
     </div>
   );
 }
