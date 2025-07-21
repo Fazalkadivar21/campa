@@ -1,31 +1,23 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CursorProvider } from "./context/CursorContext";
-import Navbar from "./components/Navbar/Navbar";
-import Header from "./components/Navbar/Header/Header";
-import PixalTransition from "./components/Navbar/pixalTransition/PixalTransition";
+
+import MainLayout from "./layouts/MainLayout";
+
 import Home from "./pages/Home";
-import GlobalCursor from "./components/GlobalCursor";
-import { useCursor } from "./context/CursorContext";
-
-function AppContent() {
-  const [isOpen, setOpen] = useState(false);
-  const { isDesktop } = useCursor();
-
-  return (
-    <div className="relative">
-      <Header isOpen={isOpen} setOpen={setOpen} />
-      <Home />
-      <Navbar open={isOpen} />
-      <PixalTransition isOpen={isOpen} />
-      {isDesktop && <GlobalCursor />}
-    </div>
-  );
-}
+import Products from "./pages/Products";
 
 function App() {
   return (
     <CursorProvider>
-      <AppContent />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+          </Route>
+          {/* you could also add a fallback 404 page here */}
+        </Routes>
+      </BrowserRouter>
     </CursorProvider>
   );
 }
