@@ -7,6 +7,22 @@ export default function GlobalCursor() {
   const cursorRef = useRef(null);
 
   useEffect(() => {
+    gsap.fromTo(
+      ".textt",
+      {
+        y: 100,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity:1,
+        duration: 1.5,
+        ease: "expo.out",
+      }
+    );
+  }, [cursorProps]);
+
+  useEffect(() => {
     if (!isDesktop || !cursorRef.current) return;
 
     const followMouse = (e) => {
@@ -32,14 +48,16 @@ export default function GlobalCursor() {
       className="fixed top-0 left-0 z-50 pointer-events-none"
     >
       <div
-        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-emerald-600 flex items-center justify-center ${color ? color : 'bg-white'}`}
+        className={`absolute -translate-x-1/2 -translate-y-1/2 rounded-full text-emerald-600 flex items-center justify-center ${
+          color ? color : "bg-white"
+        }`}
         style={{
           width: `${scale}px`,
           height: `${scale}px`,
           transition: "width 0.3s, height 0.3s, background-color 0.3s",
         }}
       >
-        <p className="m-0 leading-none">{text}</p>
+        <p className="textt m-0 leading-none">{text}</p>
       </div>
     </div>
   );

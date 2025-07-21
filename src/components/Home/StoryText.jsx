@@ -3,20 +3,10 @@ import gsap from "gsap";
 import React from "react";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useCursor } from "../../context/CursorContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const StoryText = () => {
-  const { setCursorProps } = useCursor();
-
-  const handleMouseEnter = () => {
-    setCursorProps({ text: "", scale: 512 , color : "bg-transparent" });
-  };
-
-  const handleMouseLeave = () => {
-    setCursorProps({ text: "", scale: 20 });
-  };
 
   const textRef = useRef();
   useGSAP(() => {
@@ -33,8 +23,6 @@ const StoryText = () => {
   }, []);
   return (
     <div
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
       className="relative story w-[100%] h-screen flex items-center justify-start p-10"
     >
       <h1

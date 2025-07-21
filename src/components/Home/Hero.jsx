@@ -1,11 +1,14 @@
 import gsap from "gsap";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useCursor } from "../../context/CursorContext";
 import drinkList from "../../constants/drinks";
+import { motion } from "motion/react";
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const { setCursorProps, isDesktop } = useCursor();
+  const heroRef = useRef(null);
+
 
   const drinks = drinkList;
 
@@ -13,13 +16,33 @@ const Hero = () => {
     setIndex((prev) => (prev === drinks.length - 1 ? 0 : prev + 1));
   };
 
-  const handleMouseEnter = () => {
-    setCursorProps({ text: "TAP", scale: 128 });
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            setCursorProps({ text: "", scale: 20 });
+          }
+          else{
+            setCursorProps({ text: "TAP", scale: 128 })
+          }
+        });
+      },
+      {
+        threshold: 0, // Trigger as soon as *any* part is out of view
+      }
+    );
 
-  const handleMouseLeave = () => {
-    setCursorProps({ text: "", scale: 20 });
-  };
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, [setCursorProps]);
 
   useEffect(() => {
     gsap.fromTo(
@@ -69,12 +92,14 @@ const Hero = () => {
 
   return (
     <>
-      <div
+      <motion.div
+      ref={heroRef}
         id="hero"
         onClick={changeProduct}
-        onMouseOver={handleMouseEnter}
-        onMouseOut={handleMouseLeave}
-        className={`relative overflow-hidden h-[95vh] w-[96vw] flex flex-col items-center justify-center text-center m-4 rounded-2xl ${drinks[index].color}`}>
+        onHoverStart={() => setCursorProps({ text: "TAP", scale: 128 })}
+        onHoverEnd={() => setCursorProps({ text: "", scale: 20 })}
+        className={`relative overflow-hidden h-[95vh] w-[96vw] flex flex-col items-center justify-center text-center m-4 rounded-2xl ${drinks[index].color}`}
+      >
         <div
           id="color-overlay"
           className="absolute top-1/2 left-1/2 w-[200%] h-[200%] rounded-full transform -translate-x-1/2 -translate-y-1/2 scale-0"
@@ -105,7 +130,7 @@ const Hero = () => {
           <span className="mr-2">Flavour:</span>
           <span>{drinks[index].taste}</span>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

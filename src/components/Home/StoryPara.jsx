@@ -1,5 +1,4 @@
 import React from "react";
-import { useCursor } from "../../context/CursorContext";
 
 const story = [
   {
@@ -21,18 +20,9 @@ const story = [
 ];
 
 const StoryPara = () => {
-  const { setCursorProps } = useCursor();
-  const handleMouseEnter = () => {
-    setCursorProps({ text: "", scale: 20, color: "bg-transparent" });
-  };
 
-  const handleMouseLeave = () => {
-    setCursorProps({ text: "", scale: 20 });
-  };
   return (
     <div
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
       className="mt-[10rem] px-5 lg:px-20 max-h-fit w-[96vw] rounded-2xl bg-gold text-black"
     >
       {story.map((section, index) => (

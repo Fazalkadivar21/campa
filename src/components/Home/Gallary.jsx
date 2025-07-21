@@ -1,14 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import drinks from "../../constants/drinks";
 import { useCursor } from "../../context/CursorContext";
+import { motion } from "motion/react";
 
 const Gallery = () => {
+  const arrow = (
+    <img src="src/constants/arrow.svg" className="h-fit w-fit p-2" />
+  );
   const [rotationY, setRotationY] = useState(180);
   const [isDragging, setIsDragging] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const xPos = useRef(0);
   const startX = useRef(0);
-  const { isDesktop } = useCursor();
+  const { isDesktop, setCursorProps } = useCursor();
 
   const baseImages = drinks.map((drink) => drink.can);
   const images = [...baseImages, ...baseImages].slice(0, 12);
@@ -16,6 +20,9 @@ const Gallery = () => {
 
   const step = 360 / total;
   const translateZ = -680;
+
+  const centeredIndex = Math.round((rotationY % 360) / step) % total;
+  const normalizedCenteredIndex = (centeredIndex + total) % total;
 
   const dragStart = (e) => {
     if (!isDesktop) return;
@@ -74,12 +81,14 @@ const Gallery = () => {
           maxHeight: "80vh",
         }}
       >
-        {!isDesktop&&<div
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
-          onClick={() => setRotationY((prev) => prev - step)}
-        >
-          &#10094;
-        </div>}
+        {!isDesktop && (
+          <div
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
+            onClick={() => setRotationY((prev) => prev - step)}
+          >
+            &#10094;
+          </div>
+        )}
         <div
           className={`relative w-full h-full ${
             isDesktop && isDragging
@@ -114,21 +123,28 @@ const Gallery = () => {
               onMouseEnter={() => isDesktop && setHoveredIndex(i)}
               onMouseLeave={() => isDesktop && setHoveredIndex(-1)}
             >
-              <img
+              <motion.img
                 src={src}
                 alt={`${i}`}
-                className="object-cover h-[80vh] md:w-[40vw] lg:h-[70vh] lg:w-[20vw] rounded-xl border-2 border-amber-300"
+                onHoverStart={() => {
+                  if (i === normalizedCenteredIndex)
+                    setCursorProps({ text: arrow, scale: 128 });
+                }}
+                onHoverEnd={() => setCursorProps({ text: "", scale: 20 })}
+                className={`object-cover ${i === normalizedCenteredIndex ? "cursor-none" : ""} h-[80vh] md:w-[40vw] lg:h-[70vh] lg:w-[20vw] rounded-xl border-2 border-amber-300`}
               />
             </div>
           ))}
         </div>
 
-        {!isDesktop && <div
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
-          onClick={() => setRotationY((prev) => prev + step)}
-        >
-          &#10095;
-        </div>}
+        {!isDesktop && (
+          <div
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
+            onClick={() => setRotationY((prev) => prev + step)}
+          >
+            &#10095;
+          </div>
+        )}
       </div>
     </div>
   );
