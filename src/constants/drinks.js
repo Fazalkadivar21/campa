@@ -6,6 +6,7 @@ const drinks = [
     name: "cola",
     taste: "Cola",
     color: "#4B2C5E",
+    description: "Deep, classic cola."
   },
   {
     image: "/images/jeera.png",
@@ -14,6 +15,7 @@ const drinks = [
     name: "jeera",
     taste: "Jeera",
     color: "#7BAE7F",
+    description: "Bold spiced jeera."
   },
   {
     image: "/images/orange.png",
@@ -22,6 +24,7 @@ const drinks = [
     name: "orange",
     taste: "Orange",
     color: "#C75B12",
+    description: "Bright, zesty orange."
   },
   {
     image: "/images/cricket.png",
@@ -30,6 +33,7 @@ const drinks = [
     name: "cricket",
     taste: "Lemony",
     color: "#66A85E",
+    description: "Fresh lemon twist."
   },
   {
     image: "/images/lemon.png",
@@ -38,6 +42,7 @@ const drinks = [
     name: "lemon",
     taste: "Lemon",
     color: "#D6B647",
+    description: "Pure citrus lemon."
   },
   {
     image: "/images/powerup.png",
@@ -46,6 +51,7 @@ const drinks = [
     name: "powerup",
     taste: "Strong Cola",
     color: "#2E4A7D",
+    description: "Intense dark cola."
   },
 ];
 
