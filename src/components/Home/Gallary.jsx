@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Gallery = () => {
   const navigate = useNavigate();
   const arrow = (
-    <img src="src/constants/arrow.svg" className="h-fit w-fit p-2" />
+    <img src="/images/arrow.svg" className="h-fit w-fit p-2" />
   );
   const [rotationY, setRotationY] = useState(180);
   const [isDragging, setIsDragging] = useState(false);
