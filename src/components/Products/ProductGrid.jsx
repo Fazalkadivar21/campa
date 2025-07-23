@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import GooeyNav from "../ReactBits/GooeyNav";
 import drinks from "../../constants/drinks";
@@ -17,6 +17,15 @@ const ProductGrid = () => {
   const toggleCan = () => {
     setCan((prev) => !prev);
   };
+
+  useEffect(() => {
+    drinks.forEach(({ can, bottle }) => {
+      const imgCan = new Image();
+      imgCan.src = can;
+      const imgBottle = new Image();
+      imgBottle.src = bottle;
+    });
+  }, []);
 
   return (
     <div className="relative pt-[5%] h-fit">
