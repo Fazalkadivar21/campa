@@ -15,7 +15,7 @@ function MainLayout() {
   return (
     <div className="relative">
       <Header isOpen={isOpen} setOpen={setOpen} />
-      <Navbar open={isOpen} />
+      <Navbar open={isOpen} setOpen={setOpen}/>
       <PixalTransition isOpen={isOpen} />
       <Outlet />
       <Footer />
