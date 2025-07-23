@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import drinks from "../../constants/drinks";
 import { useCursor } from "../../context/CursorContext";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 
 const Gallery = () => {
+  const navigate = useNavigate();
   const arrow = (
     <img src="src/constants/arrow.svg" className="h-fit w-fit p-2" />
   );
@@ -49,6 +51,12 @@ const Gallery = () => {
     });
   };
 
+  const handleRedirect = (src) => {
+    const name = src.split("/")[src.split("/").length - 1].split(".")[0];
+    const path = name.substring(0, name.length - 3);
+    navigate(`/products/${path}`);
+  };
+
   useEffect(() => {
     if (isDragging && isDesktop) {
       window.addEventListener("mousemove", drag);
@@ -83,10 +91,10 @@ const Gallery = () => {
       >
         {!isDesktop && (
           <div
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full -rotate-[135deg] p-2 cursor-pointer text-3xl select-none"
             onClick={() => setRotationY((prev) => prev - step)}
           >
-            &#10094;
+            {arrow}
           </div>
         )}
         <div
@@ -130,6 +138,7 @@ const Gallery = () => {
                   if (i === normalizedCenteredIndex)
                     setCursorProps({ text: arrow, scale: 128 });
                 }}
+                onClick={()=>handleRedirect(src)}
                 onHoverEnd={() => setCursorProps({ text: "", scale: 20 })}
                 className={`object-cover ${i === normalizedCenteredIndex ? "cursor-none" : ""} h-[80vh] md:w-[40vw] lg:h-[70vh] lg:w-[20vw] rounded-xl border-2 border-amber-300`}
               />
@@ -139,10 +148,10 @@ const Gallery = () => {
 
         {!isDesktop && (
           <div
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white cursor-pointer text-3xl select-none"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full rotate-45 p-2 cursor-pointer text-3xl select-none"
             onClick={() => setRotationY((prev) => prev + step)}
           >
-            &#10095;
+            {arrow}
           </div>
         )}
       </div>

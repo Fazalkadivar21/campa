@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { animate, stagger } from "motion";
 import { splitText } from "motion-plus";
 import { useRef, useState, useEffect } from "react";
+import navList from "../../constants/pages";
+import { useNavigate } from "react-router-dom";
 
 const anim = {
   initial: { opacity: 0 },
@@ -32,8 +34,8 @@ const letterAnim = {
   exit: { opacity: 0, y: 20 },
 };
 
-const Navbar = ({ open }) => {
-  const navList = ["HOME","LOGIN", "ABOUT US", "PRODUCTS", "TRUSTED BY"];
+const Navbar = ({ open, setOpen }) => {
+  const navigate = useNavigate();
   const refs = useRef([]);
   const [hoveringIndex, setHoveringIndex] = useState(null);
 
@@ -80,14 +82,18 @@ const Navbar = ({ open }) => {
           lg:top-0 lg:left-0 lg:m-0 lg:rounded-none lg:w-screen lg:h-screen"
       >
         <ul className="text-block flex flex-col items-center justify-center gap-10">
-          {navList.map((item, index) => (
+          {navList.map(({ name, path }, index) => (
             <motion.li
-              key={item}
+              key={name}
               variants={itemAnim}
               onHoverStart={() => setHoveringIndex(index)}
               onHoverEnd={() => setHoveringIndex(null)}
               className="litext text-4xl cursor-pointer"
               ref={(el) => (refs.current[index] = el)}
+              onClick={() => {
+                navigate(path);
+                setOpen(false);
+              }}
             >
               <motion.span
                 variants={anim}
@@ -96,7 +102,7 @@ const Navbar = ({ open }) => {
                 exit="exit"
                 className="inline-flex"
               >
-                {item.split("").map((char, idx) => (
+                {name.split("").map((char, idx) => (
                   <motion.span
                     key={idx}
                     variants={letterAnim}
