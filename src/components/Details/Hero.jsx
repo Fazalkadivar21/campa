@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useMagnetic from "../hooks/useMagnetic";
+import drinks from "../../constants/drinks";
 
 gsap.registerPlugin(ScrollTrigger);
 

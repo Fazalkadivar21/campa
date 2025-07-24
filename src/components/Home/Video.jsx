@@ -5,6 +5,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 const Video = () => {
   const videoRef = useRef(null);
   const textRefs = useRef([]);
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.src = "/videos/output.mp4";
+    video.preload = "auto";
+    video.load();
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -89,6 +95,7 @@ const Video = () => {
   return (
     <div className="relative w-full h-screen">
       <video
+      preload="auto"
         ref={videoRef}
         src="/videos/output.mp4"
         muted
