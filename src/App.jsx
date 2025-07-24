@@ -1,16 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CursorProvider } from "./context/CursorContext";
+import { lazy } from "react";
 
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import Login from "./pages/Login";
-import SignUp from "./pages/Signup";
-import ProductDetails from "./pages/ProductDetails";
+const Home = lazy(() => import("./pages/Home"));
+const Products = lazy(() => import("./pages/Products"));
+const Login = lazy(() => import("./pages/Login"));
+const SignUp = lazy(() => import("./pages/Signup"));
+const ProductDetails = lazy(() => import("./pages/ProductDetails"));
+const About = lazy(() => import("./pages/About"));
+
 import ScrollToTop from "./components/ScrollToTop";
-import About from "./pages/About";
 import Loading from "./components/Loading";
 import { Suspense } from "react";
 
