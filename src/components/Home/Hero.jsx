@@ -6,13 +6,17 @@ import { motion } from "motion/react";
 import useMagnetic from "../hooks/useMagnetic";
 
 const Hero = () => {
+  const drinks = drinkList;
+  useEffect(() => {
+    drinks.forEach((drink) => {
+      const img = new Image();
+      img.src = drink.image;
+    });
+  }, []);
   const [index, setIndex] = useState(0);
   const { setCursorProps, isDesktop } = useCursor();
   const magneticRef = useMagnetic(1);
   const heroRef = useRef(null);
-
-
-  const drinks = drinkList;
 
   const changeProduct = () => {
     setIndex((prev) => (prev === drinks.length - 1 ? 0 : prev + 1));
@@ -24,9 +28,8 @@ const Hero = () => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) {
             setCursorProps({ text: "", scale: 20 });
-          }
-          else{
-            setCursorProps({ text: "TAP", scale: 128 })
+          } else {
+            setCursorProps({ text: "TAP", scale: 128 });
           }
         });
       },
@@ -95,7 +98,7 @@ const Hero = () => {
   return (
     <>
       <motion.div
-      ref={heroRef}
+        ref={heroRef}
         id="hero"
         onClick={changeProduct}
         onHoverStart={() => setCursorProps({ text: "TAP", scale: 128 })}
@@ -108,7 +111,10 @@ const Hero = () => {
         ></div>
 
         {/* Big brand title */}
-        <h1 ref={magneticRef} className="absolute z-0 -rotate-[15deg] text-[5.4rem] md:text-9xl lg:text-9xl font-bold text-white mb-4">
+        <h1
+          ref={magneticRef}
+          className="absolute z-0 -rotate-[15deg] text-[5.4rem] md:text-9xl lg:text-9xl font-bold text-white mb-4"
+        >
           DRINK
           <br />
           CAMPA
