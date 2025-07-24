@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useCursor } from "../../context/CursorContext";
 import drinkList from "../../constants/drinks";
 import { motion } from "motion/react";
+import useMagnetic from "../hooks/useMagnetic";
 
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const { setCursorProps, isDesktop } = useCursor();
+  const magneticRef = useMagnetic(1);
   const heroRef = useRef(null);
 
 
@@ -106,7 +108,7 @@ const Hero = () => {
         ></div>
 
         {/* Big brand title */}
-        <h1 className="absolute z-0 -rotate-[15deg] text-[5.4rem] md:text-9xl lg:text-9xl font-bold text-white mb-4">
+        <h1 ref={magneticRef} className="absolute z-0 -rotate-[15deg] text-[5.4rem] md:text-9xl lg:text-9xl font-bold text-white mb-4">
           DRINK
           <br />
           CAMPA
@@ -114,6 +116,7 @@ const Hero = () => {
 
         {/* Product image */}
         <div
+          ref={magneticRef}
           key={drinks[index].name}
           className="product-image md:h-[90%] lg:h-[90%] z-[1]"
         >

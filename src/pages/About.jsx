@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +32,17 @@ const story = [
 
 const LuxuryHeroStory = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const preloadImages = () => {
+      story.forEach((item) => {
+        const img = new Image();
+        img.src = item.img;
+      });
+    };
+    preloadImages();
+  }, []);
+  
 
   useGSAP(() => {
     gsap.utils.toArray(".story-section").forEach((section) => {

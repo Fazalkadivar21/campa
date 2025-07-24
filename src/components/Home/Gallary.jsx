@@ -5,6 +5,16 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 
 const Gallery = () => {
+  useEffect(() => {
+    const preloadImages = () => {
+      drinks.forEach(({ can }) => {
+        const img = new Image();
+        img.src = can;
+      });
+    };
+    preloadImages();
+  }, []);
+  
   const navigate = useNavigate();
   const arrow = (
     <img src="/images/arrow.svg" className="h-fit w-fit p-2" />
