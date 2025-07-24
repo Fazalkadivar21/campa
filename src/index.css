@@ -8,8 +8,8 @@
 }
 
 body{
-    background-color: #0f0f0f;
-    color : #ffd700;
+    background-color: #f3f1eb;
+    color : #00194a;
     font-family : "kugile";
     box-sizing: border-box;
 }
@@ -18,12 +18,8 @@ body{
   cursor: none;
 }
 
-div.Renewal{
-  font-size: 21vw;
-}
-
 .bg-gold {
-  background-color: #ffd700;
+  background-color: #00194a;
 }
 
 .text-black {

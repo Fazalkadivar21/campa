@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const navigate = useNavigate()
+  //set bg color based on current page
   return (
-    <footer className="bg-gold text-black py-16">
+    <footer className={`bg-gold text-[#f3f1eb] py-16`}>
       {/* Top navigation links */}
       <div className="flex items-center justify-around gap-6 font-mono uppercase text-xs sm:text-sm md:text-base tracking-widest">
         {navList.map(({name,path},index) => (

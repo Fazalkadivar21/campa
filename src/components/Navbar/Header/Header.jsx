@@ -11,7 +11,7 @@ export default function Index({ isOpen, setOpen }) {
   const { setCursorProps, isDesktop } = useCursor();
 
   const handleMouseEnter = () => {
-    setCursorProps({ text: "", scale: 38, color: "bg-white" });
+    setCursorProps({ text: "", scale: 38, color: "bg-[#00194a]" });
   };
 
   const handleMouseLeave = () => {

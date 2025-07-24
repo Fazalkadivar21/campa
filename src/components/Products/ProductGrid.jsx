@@ -49,12 +49,12 @@ const ProductGrid = () => {
             <motion.img
               onHoverStart={() => setCursorProps({ text: "VIEW", scale: 85 })}
               onHoverEnd={() => setCursorProps({ text: "", scale: 20 })}
-              onClick={()=>navigate(`/products/${name}`)}
+              onClick={()=> {setCursorProps({ text: "", scale: 20 });navigate(`/products/${name}`)}}
               className="w-[400px] h-[600px] object-cover rounded-2xl hover:cursor-none"
               src={isCan ? can : bottle}
               alt={name}
             />
-            <div className="absolute z-10 bottom-0 p-3 bg-white text-black h-[15%] rounded-b-2xl w-full">
+            <div className="absolute z-10 bottom-0 p-3 bg-[#00194a] text-[#f3f1eb] h-[15%] rounded-b-2xl w-full">
               <h1 className="text-4xl capitalize">{name}</h1>
               <p className="text-xl mt-1">{description}</p>
             </div>

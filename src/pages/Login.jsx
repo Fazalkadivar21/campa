@@ -31,7 +31,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white text-black">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#f3f1eb] text-black">
       <ToastContainer />
       <div className="flex space-x-8 mb-6">
         <button className="border-b-2 border-black text-lg italic">Login</button>

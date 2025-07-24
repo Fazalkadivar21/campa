@@ -272,7 +272,7 @@ const GooeyNav = ({
           }
         `}
       </style>
-      <div className="relative h-20 overflow-hidden flex items-center justify-center" ref={containerRef}>
+      <div className="relative h-20 overflow-hidden bg-[#00194a] rounded-2xl flex items-center justify-center" ref={containerRef}>
         <nav
           className="flex relative"
           style={{ transform: "translate3d(0,0,0.01px)" }}
@@ -288,7 +288,7 @@ const GooeyNav = ({
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`rounded-full outline-none py-[0.6em] px-[1em] inline-block relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
+                className={`rounded-full outline-none py-[0.6em] px-[1em] inline-block relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-[#f3f1eb] ${
                   activeIndex === index ? "active" : ""
                 }`}
                 onClick={(e) => handleClick(e, index)}

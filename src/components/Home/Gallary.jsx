@@ -74,7 +74,7 @@ const Gallery = () => {
 
   return (
     <div className="relative h-fit w-screen flex flex-col items-center justify-center overflow-hidden select-none">
-      <div className="text-[14vw] lg:text-[25vh] h-fit flex items-center justify-center text-center">
+      <div className="text-[14vw] md:text-[12vw] lg:text-[25vh] h-fit flex items-center justify-center text-center">
         Timeless Taste
       </div>
       {/* Left arrow */}
@@ -91,7 +91,7 @@ const Gallery = () => {
       >
         {!isDesktop && (
           <div
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full -rotate-[135deg] p-2 cursor-pointer text-3xl select-none"
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-[#00194a] rounded-full -rotate-[135deg] p-2 cursor-pointer text-3xl select-none"
             onClick={() => setRotationY((prev) => prev - step)}
           >
             {arrow}
@@ -138,9 +138,9 @@ const Gallery = () => {
                   if (i === normalizedCenteredIndex)
                     setCursorProps({ text: arrow, scale: 128 });
                 }}
-                onClick={()=>handleRedirect(src)}
+                onClick={()=> {setCursorProps({ text: "", scale: 20 });handleRedirect(src)}}
                 onHoverEnd={() => setCursorProps({ text: "", scale: 20 })}
-                className={`object-cover ${i === normalizedCenteredIndex ? "cursor-none" : ""} h-[80vh] md:w-[40vw] lg:h-[70vh] lg:w-[20vw] rounded-xl border-2 border-amber-300`}
+                className={`object-cover ${i === normalizedCenteredIndex ? "cursor-none" : ""} h-[80vh] md:w-[40vw] lg:h-[70vh] lg:w-[20vw] rounded-xl shadow-[0_0_10px_#00194a]`}
               />
             </div>
           ))}
@@ -148,7 +148,7 @@ const Gallery = () => {
 
         {!isDesktop && (
           <div
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full rotate-45 p-2 cursor-pointer text-3xl select-none"
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-[#00194a] rounded-full rotate-45 p-2 cursor-pointer text-3xl select-none"
             onClick={() => setRotationY((prev) => prev + step)}
           >
             {arrow}

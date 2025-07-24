@@ -50,7 +50,7 @@ const Slider = () => {
     <motion.img
       src="/images/arrow.svg"
       alt="arrow"
-      className="h-[70px] w-[70px] p-6 mx-4 bg-white rounded-full"
+      className="h-[70px] w-[70px] p-6 mx-4 bg-[#00194a] rounded-full"
       animate={{ rotate: scrollDir === "up" ? -90 : 0 }}
       transition={{ duration: 0.6 }}
     />

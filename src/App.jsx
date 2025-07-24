@@ -8,15 +8,21 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Login from "./pages/Login";
 import SignUp from "./pages/Signup";
+import ProductDetails from "./pages/ProductDetails";
+import ScrollToTop from './components/ScrollToTop';
+import About from "./pages/About";
 
 function App() {
   return (
     <CursorProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/products/:name" element={<ProductDetails />} />
+            <Route path="/about" element={<About />} />
           </Route>
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
