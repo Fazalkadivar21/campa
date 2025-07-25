@@ -1,16 +1,25 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CursorProvider } from "./context/CursorContext";
+import withDelay from "./utils/withDelay";
 import { lazy } from "react";
 
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
+import delayedLazy from './utils/delayedLazy';
 
-const Home = lazy(() => import("./pages/Home"));
-const Products = lazy(() => import("./pages/Products"));
-const Login = lazy(() => import("./pages/Login"));
-const SignUp = lazy(() => import("./pages/Signup"));
-const ProductDetails = lazy(() => import("./pages/ProductDetails"));
-const About = lazy(() => import("./pages/About"));
+const HomeLazy = delayedLazy(() => import("./pages/Home"));
+const ProductsLazy = delayedLazy(() => import("./pages/Products"));
+const LoginLazy = delayedLazy(() => import("./pages/Login"));
+const SignUpLazy = delayedLazy(() => import("./pages/Signup"));
+const ProductDetailsLazy = delayedLazy(() => import("./pages/ProductDetails"));
+const AboutLazy = delayedLazy(() => import("./pages/About"));
+
+const Home = withDelay(HomeLazy)
+const Products = withDelay(ProductsLazy)
+const Login = withDelay(LoginLazy)
+const SignUp = withDelay(SignUpLazy)
+const ProductDetails = withDelay(ProductDetailsLazy)
+const About = withDelay(AboutLazy)
 
 import ScrollToTop from "./components/ScrollToTop";
 import Loading from "./components/Loading";
