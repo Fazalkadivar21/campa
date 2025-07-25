@@ -18,7 +18,7 @@ const Socials = () => {
 
   const syncWave = (event) => {
     if (!containerRef.current) return;
-    const pointer = event.clientX || event.touches?.[0]?.clientX || 0;
+    const pointer = event.clientX || 0;
     const container = containerRef.current;
     const children = container.children;
 
@@ -50,15 +50,11 @@ const Socials = () => {
 
     // Handle both mouse and touch
     container.addEventListener("mousemove", syncWave);
-    container.addEventListener("touchmove", syncWave);
     container.addEventListener("mouseleave", settleWave);
-    container.addEventListener("touchend", settleWave);
 
     return () => {
       container.removeEventListener("mousemove", syncWave);
-      container.removeEventListener("touchmove", syncWave);
       container.removeEventListener("mouseleave", settleWave);
-      container.removeEventListener("touchend", settleWave);
     };
   }, []);
 
@@ -102,7 +98,7 @@ const Socials = () => {
               ">
                 <img
                   className="
-                    w-full sm:h-72
+                    w-[70vw] sm:h-72
                     md:w-32 
                     lg:w-44 
                     xl:w-[13rem] xl:h-[20rem]
