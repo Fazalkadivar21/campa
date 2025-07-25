@@ -51,7 +51,7 @@ function MainLayout() {
     <div className="relative" data-barba="wrapper">
       <Header isOpen={isOpen} setOpen={setOpen} />
       <Navbar open={isOpen} setOpen={setOpen} />
-      <PixalTransition isOpen={isTransitioning} />
+      <PixalTransition isOpen={isOpen} />
       <main data-barba="container" data-barba-namespace={location.pathname}>
         <Outlet />
       </main>

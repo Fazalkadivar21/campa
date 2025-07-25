@@ -10,15 +10,13 @@ import delayedLazy from './utils/delayedLazy';
 
 const HomeLazy = delayedLazy(() => import("./pages/Home"));
 const ProductsLazy = delayedLazy(() => import("./pages/Products"));
-const LoginLazy = delayedLazy(() => import("./pages/Login"));
-const SignUpLazy = delayedLazy(() => import("./pages/Signup"));
+const Login = delayedLazy(() => import("./pages/Login"));
+const SignUp = delayedLazy(() => import("./pages/Signup"));
 const ProductDetailsLazy = delayedLazy(() => import("./pages/ProductDetails"));
 const AboutLazy = delayedLazy(() => import("./pages/About"));
 
 const Home = withDelay(HomeLazy)
 const Products = withDelay(ProductsLazy)
-const Login = withDelay(LoginLazy)
-const SignUp = withDelay(SignUpLazy)
 const ProductDetails = withDelay(ProductDetailsLazy)
 const About = withDelay(AboutLazy)
 
