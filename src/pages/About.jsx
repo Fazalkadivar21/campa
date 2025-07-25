@@ -30,7 +30,7 @@ const story = [
   },
 ];
 
-const LuxuryHeroStory = () => {
+const About = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const LuxuryHeroStory = () => {
   }, []);
 
   return (
+    <div data-barba="container" data-barba-namespace="about">
     <section className="bg-[#f3f1eb] text-[#00194a] font-sans mx-5 md:mx-10 lg:mx-20">
       {/* Hero */}
       <div className="relative flex flex-col items-center justify-center text-center py-24 sm:py-32 px-4 sm:px-5 overflow-hidden">
@@ -145,7 +146,8 @@ const LuxuryHeroStory = () => {
         </button>
       </div>
     </section>
+    </div>
   );
 };
 
-export default LuxuryHeroStory;
+export default About;

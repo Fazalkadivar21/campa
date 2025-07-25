@@ -102,9 +102,9 @@ const Socials = () => {
               ">
                 <img
                   className="
-                    w-full h-60 sm:h-72
-                    md:w-32 md:h-48 
-                    lg:w-44 lg:h-64 
+                    w-full sm:h-72
+                    md:w-32 
+                    lg:w-44 
                     xl:w-[13rem] xl:h-[20rem]
                     2xl:w-[16rem] 2xl:h-[24rem]
                     object-cover

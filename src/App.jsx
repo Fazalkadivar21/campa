@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CursorProvider } from "./context/CursorContext";
+import { TransitionProvider } from "./context/TransitionContext";
 import withDelay from "./utils/withDelay";
 import { lazy } from "react";
 
@@ -28,24 +29,26 @@ import { Suspense } from "react";
 function App() {
   return (
     <CursorProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:name" element={<ProductDetails />} />
-              <Route path="/about" element={<About />} />
-            </Route>
-            <Route element={<AuthLayout />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<SignUp />} />
-            </Route>
-            {/* you could also add a fallback 404 page here */}
-          </Routes>
-        </Suspense>
-      </BrowserRouter>
+      <TransitionProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:name" element={<ProductDetails />} />
+                <Route path="/about" element={<About />} />
+              </Route>
+              <Route element={<AuthLayout />}>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<SignUp />} />
+              </Route>
+              {/* you could also add a fallback 404 page here */}
+            </Routes>
+          </Suspense>
+        </BrowserRouter>
+      </TransitionProvider>
     </CursorProvider>
   );
 }
