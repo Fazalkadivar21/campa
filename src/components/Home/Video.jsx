@@ -95,7 +95,7 @@ const Video = () => {
   return (
     <div className="relative w-full h-screen">
       <video
-      preload="auto"
+      preload="metadata"
         ref={videoRef}
         src="/videos/output.mp4"
         muted
